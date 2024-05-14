@@ -116,7 +116,9 @@ def extract_html_content(html_path, relative_path, error_log):
                     title_tag = soup.find('title')
 
                 # If a title tag or h1 tag is found, get the combined text, otherwise use a blank space
-                title_html = title_tag.get_text(strip=True).replace('"', "'").replace('\n', ' ').replace('\r', ' ') if title_tag else ' '
+                # title_html = title_tag.get_text(strip=True).replace('"', "'").replace('\n', ' ').replace('\r', ' ') if title_tag else ' '
+                title_html = (title_tag.get_text(strip=True).replace('"', "'").replace('\n', ' ').replace('\r', ' ')
+                            if title_tag and title_tag.get_text(strip=True) != '' else ' ')
 
                 print("title_html is : ", title_html)
 
